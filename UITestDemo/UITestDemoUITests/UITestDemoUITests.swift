@@ -31,6 +31,17 @@ class UITestDemoUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        let table = app.tables.element(boundBy: 0)
+        
+        XCTAssertEqual(app.tables.count, 1)
+        XCTAssertEqual(app.buttons.count, 1)
+        XCTAssertEqual(table.cells.count, 0)
+        
+        app.buttons["LOAD TABLE"].tap()
+        app.tables/*@START_MENU_TOKEN@*/.staticTexts["This The row5"]/*[[".cells.staticTexts[\"This The row5\"]",".staticTexts[\"This The row5\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        
+        XCTAssertEqual(table.cells.count, 9)
     }
-    
 }
